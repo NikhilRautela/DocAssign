@@ -14,7 +14,7 @@ export default function Login() {
     e.preventDefault()
     setLoading(true)
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/login', form)
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/auth/login`, form)
       login(res.data.user, res.data.token)
       const role = res.data.user.role
       if (role === 'PATIENT') navigate('/patient/dashboard')
@@ -96,8 +96,8 @@ export default function Login() {
             <div className="space-y-2">
               {[
                 { role: 'Admin', email: 'admin@docassign.com', password: 'admin123', color: 'indigo' },
-                { role: 'Doctor', email: 'dr.priya@docassign.com', password: 'doctor123', color: 'green' },
-                { role: 'Patient', email: 'patient2@test.com', password: 'patient123', color: 'blue' },
+                { role: 'Doctor', email: 'doctor@docassign.com', password: 'doctor123', color: 'green' },
+                { role: 'Patient', email: 'patient@docassign.com', password: 'patient123', color: 'blue' },
               ].map(({ role, email, password, color }) => (
                 <button
                   key={role}

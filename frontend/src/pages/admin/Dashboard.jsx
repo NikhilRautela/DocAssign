@@ -10,7 +10,7 @@ export default function AdminDashboard() {
   const [reports, setReports] = useState([])
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/admin/reports', { headers: { Authorization: `Bearer ${token}` } })
+    axios.get('https://docassign-backend.onrender.com/api/admin/reports', { headers: { Authorization: `Bearer ${token}` } })
       .then(res => {
         const data = res.data
         setReports(data.slice(0, 5))
@@ -21,7 +21,7 @@ export default function AdminDashboard() {
           pending: data.filter(r => r.status === 'PENDING').length,
         }))
       })
-    axios.get('http://localhost:5000/api/admin/patients', { headers: { Authorization: `Bearer ${token}` } })
+    axios.get('https://docassign-backend.onrender.com/api/admin/patients', { headers: { Authorization: `Bearer ${token}` } })
       .then(res => setStats(s => ({ ...s, patients: res.data.length })))
   }, [])
 

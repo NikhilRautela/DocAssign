@@ -21,7 +21,7 @@ export default function UploadReport() {
       formData.append('symptoms', form.symptoms)
       formData.append('manualTranscript', form.manualTranscript)
       if (file) formData.append('report', file)
-      const res = await axios.post('http://localhost:5000/api/reports/upload', formData, {
+      const res = await axios.post('https://docassign-backend.onrender.com/api/reports/upload', formData, {
         headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'multipart/form-data' }
       })
       setResult(res.data)

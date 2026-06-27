@@ -9,15 +9,15 @@ export default function AssignedReports() {
   const navigate = useNavigate()
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/doctor/reports', { headers: { Authorization: `Bearer ${token}` } })
+    axios.get('https://docassign-backend.onrender.com/api/doctor/reports', { headers: { Authorization: `Bearer ${token}` } })
       .then(res => setAssignments(res.data))
   }, [])
 
   const markReviewed = async (reportId) => {
-    await axios.patch(`http://localhost:5000/api/doctor/reports/${reportId}/mark-reviewed`, {}, {
+    await axios.patch(`https://docassign-backend.onrender.com/api/doctor/reports/${reportId}/mark-reviewed`, {}, {
       headers: { Authorization: `Bearer ${token}` }
     })
-    const res = await axios.get('http://localhost:5000/api/doctor/reports', { headers: { Authorization: `Bearer ${token}` } })
+    const res = await axios.get('https://docassign-backend.onrender.com/api/doctor/reports', { headers: { Authorization: `Bearer ${token}` } })
     setAssignments(res.data)
   }
 

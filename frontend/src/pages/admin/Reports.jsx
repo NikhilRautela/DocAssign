@@ -9,16 +9,16 @@ export default function AdminReports() {
   const { token } = useAuth()
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/admin/reports', { headers: { Authorization: `Bearer ${token}` } })
+    axios.get('https://docassign-backend.onrender.com/api/admin/reports', { headers: { Authorization: `Bearer ${token}` } })
       .then(res => setReports(res.data))
-    axios.get('http://localhost:5000/api/doctors', { headers: { Authorization: `Bearer ${token}` } })
+    axios.get('https://docassign-backend.onrender.com/api/doctors', { headers: { Authorization: `Bearer ${token}` } })
       .then(res => setDoctors(res.data))
   }, [])
 
   const assignDoctor = async (reportId, doctorProfileId) => {
-    await axios.patch(`http://localhost:5000/api/admin/reports/${reportId}/assign-doctor`,
+    await axios.patch(`https://docassign-backend.onrender.com/api/admin/reports/${reportId}/assign-doctor`,
       { doctorProfileId }, { headers: { Authorization: `Bearer ${token}` } })
-    const res = await axios.get('http://localhost:5000/api/admin/reports', { headers: { Authorization: `Bearer ${token}` } })
+    const res = await axios.get('https://docassign-backend.onrender.com/api/admin/reports', { headers: { Authorization: `Bearer ${token}` } })
     setReports(res.data)
   }
 

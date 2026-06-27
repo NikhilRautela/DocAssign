@@ -10,7 +10,7 @@ export default function MyReports() {
   const navigate = useNavigate()
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/reports/my', {
+    axios.get('https://docassign-backend.onrender.com/api/reports/my', {
       headers: { Authorization: `Bearer ${token}` }
     }).then(res => { setReports(res.data); setLoading(false) })
   }, [])

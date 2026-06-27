@@ -13,7 +13,7 @@ export default function AdminDoctors() {
   const { token } = useAuth()
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/doctors', { headers: { Authorization: `Bearer ${token}` } })
+    axios.get('https://docassign-backend.onrender.com/api/doctors', { headers: { Authorization: `Bearer ${token}` } })
       .then(res => setDoctors(res.data))
   }, [])
 
@@ -21,8 +21,8 @@ export default function AdminDoctors() {
     e.preventDefault()
     setLoading(true)
     try {
-      await axios.post('http://localhost:5000/api/doctors', form, { headers: { Authorization: `Bearer ${token}` } })
-      const res = await axios.get('http://localhost:5000/api/doctors', { headers: { Authorization: `Bearer ${token}` } })
+      await axios.post('https://docassign-backend.onrender.com/api/doctors', form, { headers: { Authorization: `Bearer ${token}` } })
+      const res = await axios.get('https://docassign-backend.onrender.com/api/doctors', { headers: { Authorization: `Bearer ${token}` } })
       setDoctors(res.data)
       setForm({ name: '', email: '', password: '', category: 'General Physician', specialization: '', experience: '' })
       setShowForm(false)

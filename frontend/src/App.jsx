@@ -1,7 +1,7 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { useAuth } from './context/AuthContext'
-import Login from './pages/Login'
-import Register from './pages/Register'
+import Login from "./auth/Login";
+import Register from "./auth/Register";
 import PatientDashboard from './pages/patient/Dashboard'
 import UploadReport from './pages/patient/UploadReport'
 import MyReports from './pages/patient/MyReports'

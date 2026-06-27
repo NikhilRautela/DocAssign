@@ -9,7 +9,7 @@ export default function AdminPatients() {
   const { token } = useAuth()
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/admin/patients', {
+    axios.get('https://docassign-backend.onrender.com/api/admin/patients', {
       headers: { Authorization: `Bearer ${token}` }
     }).then(res => { setPatients(res.data); setLoading(false) })
   }, [])
