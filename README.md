@@ -6,7 +6,7 @@ A full-stack healthcare workflow system where patients upload medical reports, A
 
 ## Live Demo
 
-- **Frontend:** https://doc-assign-glev.vercel.app
+- **Frontend:** https://doc-assign-g1ev.vercel.app
 - **Backend API:** https://docassign-backend.onrender.com
 
 ---
