@@ -1,0 +1,83 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  role      String   @default("PATIENT")
+  createdAt DateTime @default(now())
+
+  patientProfile  PatientProfile?
+  doctorProfile   DoctorProfile?
+}
+
+model PatientProfile {
+  id        String  @id @default(cuid())
+  userId    String  @unique
+  name      String
+  age       Int
+  gender    String
+  phone     String
+  user      User    @relation(fields: [userId], references: [id])
+  reports   PatientReport[]
+}
+
+model DoctorProfile {
+  id             String  @id @default(cuid())
+  userId         String  @unique
+  name           String
+  category       String
+  specialization String
+  experience     Int
+  available      Boolean @default(true)
+  user           User    @relation(fields: [userId], references: [id])
+  assignments    DoctorAssignment[]
+}
+
+model PatientReport {
+  id               String   @id @default(cuid())
+  patientProfileId String
+  symptoms         String
+  filePath         String?
+  transcript       String?
+  status           String   @default("PENDING")
+  createdAt        DateTime @default(now())
+
+  patientProfile   PatientProfile    @relation(fields: [patientProfileId], references: [id])
+  aiAnalysis       AIAnalysisLog?
+  assignment       DoctorAssignment?
+}
+
+model DoctorAssignment {
+  id              String   @id @default(cuid())
+  reportId        String   @unique
+  doctorProfileId String
+  status          String   @default("ASSIGNED")
+  reviewedAt      DateTime?
+  createdAt       DateTime @default(now())
+
+  report          PatientReport @relation(fields: [reportId], references: [id])
+  doctor          DoctorProfile @relation(fields: [doctorProfileId], references: [id])
+}
+
+model AIAnalysisLog {
+  id                String   @id @default(cuid())
+  reportId          String   @unique
+  transcript        String
+  suggestedCategory String
+  confidence        Float
+  urgency           String
+  reason            String
+  keywords          String
+  source            String   @default("AI")
+  createdAt         DateTime @default(now())
+
+  report            PatientReport @relation(fields: [reportId], references: [id])
+}
