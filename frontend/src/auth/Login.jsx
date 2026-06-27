@@ -96,7 +96,7 @@ export default function Login() {
             <div className="space-y-2">
               {[
                 { role: 'Admin', email: 'admin@docassign.com', password: 'admin123', color: 'indigo' },
-                { role: 'Doctor', email: 'ortho@docassign.com  ', password: 'doctor123', color: 'green' },
+                { role: 'Doctor', email: 'ortho@docassign.com', password: 'doctor123', color: 'green' },
                 { role: 'Patient', email: 'patient@docassign.com', password: 'patient123', color: 'blue' },
               ].map(({ role, email, password, color }) => (
                 <button
